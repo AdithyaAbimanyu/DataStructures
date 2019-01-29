@@ -26,7 +26,11 @@ public class SudokuSolver
             return true;
         }
         int value=0;
-        if(arr[row][col] == 0)
+        if(arr[row][col] != 0)
+        {
+            solveSudoku(arr, row + ((col + 1) / maxCol), (col + 1) % maxCol, maxRow, maxCol);
+        }
+        else
         {
             for (value = 1; value <= maxRow; value++) {
                 if (arr[row][col] == 0 && checkIfSatisfy(arr, row, col, value)) {
@@ -36,14 +40,6 @@ public class SudokuSolver
                     }
                 }
             }
-
-        if (value > maxRow) {
-            return false;
-        }
-        }
-        else
-        {
-            solveSudoku(arr, row + ((col + 1) / maxCol), (col + 1) % maxCol, maxRow, maxCol);
         }
         return false;
     }
